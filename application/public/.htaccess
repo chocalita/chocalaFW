@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+#    RewriteCond %{REQUEST_FILENAME} !\.(?!js|css|less|html|swf|flv|xml)([^.]*)
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>
+AddDefaultCharset UTF-8
+Header append Author "Yecid Pacifico Rodriguez Aranda"

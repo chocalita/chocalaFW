@@ -1,0 +1,29 @@
+.menu_gen{
+    float: left;
+}
+.menu_gen ul {
+    margin: 0; 
+    padding: 0;
+    width: 185px;
+    list-style-type: none;
+}
+.menu_gen ul li{
+    border-bottom: 1px dotted #f6f6f6;
+    padding: 0;
+}
+.menu_gen ul li a {
+    background-color: #104B89;
+    color: white; 
+    display:block;
+    padding: 10.5px 15px;
+    text-decoration: none;
+}
+ 
+.menu_gen ul li a:visited {
+    color: white;
+}
+ 
+.menu_gen ul li a:hover, .menu_gen ul li .current {
+    background-color: #1766C5;
+    color: white;
+}
