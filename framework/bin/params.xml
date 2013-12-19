@@ -1,0 +1,42 @@
+<params>
+	<param name="CLASS_ROW_1" value="tRow1" type="STRING" access="PROTECTED">
+		<description>Es el estilo de las filas impares de las tablas</description>
+		<options>
+		</options>
+	</param>
+	<param name="CLASS_ROW_2" value="tRow2" type="STRING" access="PROTECTED">
+		<description>Es el estilo de las filas ares de las tablas</description>
+		<options>
+		</options>
+	</param>
+	<param name="FOOTER_LEFT" value="YPRA" type="STRING" access="PROTECTED">
+		<description>Texto izquierdo en el pie de la pagina</description>
+		<options>
+		</options>
+	</param>
+	<param name="FOOTER_RIGHT" value="isaXbo" type="STRING" access="PROTECTED">
+		<description>Texto derecho en el pie de la pagina</description>
+		<options>
+		</options>
+	</param>
+	<param name="MAP_LATITUD" value="-16.49666566287543" type="STRING" access="PRIVATE">
+		<description>Latitud inicial</description>
+		<options>
+		</options>
+	</param>
+	<param name="MAP_LONGITUD" value="-68.1320571899414" type="STRING" access="PRIVATE">
+		<description>Longitud inicial</description>
+		<options>
+		</options>
+	</param>
+	<param name="MAX_CATEGORIAS" value="5" type="INTEGER" access="PUBLIC">
+		<description>Es el número máximo de categorías que puede configurar un cliente.</description>
+		<options>
+		</options>
+	</param>
+	<param name="PAGE_RECORDS" value="20" type="INTEGER" access="PUBLIC">
+		<description>Es la cantidad de filas que puede existir en las tablas.</description>
+		<options>
+		</options>
+	</param>
+</params>
