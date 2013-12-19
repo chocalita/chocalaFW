@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <propel>
+    <datasources default="#DBNAME#">
+      <datasource id="#DBNAME#">
+        <adapter>#ADAPTER#</adapter>
+        <connection>
+          <dsn>#DSN#</dsn>
+          <user>#USER#</user>
+          <password>#PASSWORD#</password>
+        </connection>
+      </datasource>
+    </datasources>
+  </propel>
+</config>

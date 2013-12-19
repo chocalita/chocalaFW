@@ -1,0 +1,98 @@
+<?=CodeGenerator::TAG_OPEN_SHORT;?> BarView::renderBar('messages'); <?=CodeGenerator::TAG_CLOSE;?>
+
+<h1>#CLASS_NAME#s List</h1>
+
+<div class="fRight">
+    <a href="<?=CodeGenerator::TAG_OPEN_SHORT;?> URI::toPage().'create'; <?=CodeGenerator::TAG_CLOSE;?>" class="linkAdd">Create #CLASS_NAME#</a>
+</div>
+<hr class="clear" />
+
+<table class="tList tSorter" align="center" width="100%">
+    <thead>
+        <tr>
+            <th>Nº</th>
+        <?php
+        foreach($hashColumns as $hashColumn):
+            $columnMap = $hashColumn['maped'];
+            $camelName = SpecialStrings::camelCase($columnMap->getColumnName());
+            $pascalName = SpecialStrings::pascalCase($columnMap->getColumnName());
+            if($columnMap->isForeignKey()):
+                $relatedClassName = SpecialStrings::camelCase($columnMap->getRelatedTableName());
+                $relatedFieldName = SpecialStrings::camelCase($hashColumn['field']);
+            ?>
+
+            <th><?= $relatedClassName;?></th>
+            <?php
+            elseif(!$columnMap->isPrimaryKey()):
+            ?>
+            
+            <th><?= $camelName;?></th>
+            <?php
+            endif;
+        endforeach;
+        ?>
+
+        </tr>
+    </thead>
+    <tbody>
+        <?=CodeGenerator::TAG_OPEN;?>
+
+        $i = 0;
+        foreach(#CLASS_PAGER# as #CLASS_INSTANCE#):
+        <?=CodeGenerator::TAG_CLOSE;?>
+
+        <tr class="<?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_PAGER#->isOdd()? 'odd': 'even'; <?=CodeGenerator::TAG_CLOSE;?>">
+            <td><?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_PAGER#->getFirstIndex() + $i; <?=CodeGenerator::TAG_CLOSE;?></td>
+            <?php
+            $nColumns = 0;
+            foreach($hashColumns as $hashColumn):
+                $columnMap = $hashColumn['maped'];
+                $camelName = SpecialStrings::camelCase($columnMap->getColumnName());
+                $pascalName = SpecialStrings::pascalCase($columnMap->getColumnName());
+                if($columnMap->isForeignKey()):
+                    $relatedClassName = SpecialStrings::camelCase($columnMap->getRelatedTableName());
+                    $relatedFieldName = SpecialStrings::camelCase($hashColumn['field']);
+                    $nColumns++;
+            ?>
+
+            <td><?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_INSTANCE#->get<?= $relatedClassName;?>()->get<?= $relatedFieldName;?>(); <?=CodeGenerator::TAG_CLOSE;?></td>
+            <?php
+                elseif(!$columnMap->isPrimaryKey()):
+                    $nColumns++;
+            ?>
+            
+            <td><?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_INSTANCE#->get<?= $camelName;?>(); <?=CodeGenerator::TAG_CLOSE;?></td>
+            <?php
+                endif;
+            endforeach;
+            ?>
+
+        </tr>
+        <?=CodeGenerator::TAG_OPEN;?>
+
+            $i++;
+        endforeach;
+        if(#CLASS_PAGER#->isEmpty()):
+        <?=CodeGenerator::TAG_CLOSE;?>
+
+        <tr class="odd">
+            <td class="center" colspan="<?= $nColumns+1;?>">* There are no #CLASS_NAME#s *</td>
+        </tr>
+        <?=CodeGenerator::TAG_OPEN;?> endif; <?=CodeGenerator::TAG_CLOSE;?>
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="paginateButtons" colspan="<?= $nColumns+1;?>">
+                <?=CodeGenerator::TAG_OPEN;?> if(#CLASS_PAGER#->haveToPaginate()): <?=CodeGenerator::TAG_CLOSE;?>
+
+                <p>Page <?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_PAGER#->getPage(); <?=CodeGenerator::TAG_CLOSE;?> of <?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_PAGER#->getLastPage(); <?=CodeGenerator::TAG_CLOSE;?> </p>
+                <p>Displaying results <?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_PAGER#->getFirstIndex(); <?=CodeGenerator::TAG_CLOSE;?> to <?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_PAGER#->getLastIndex(); <?=CodeGenerator::TAG_CLOSE;?>
+
+                    on a total of <?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_PAGER#->getNbResults(); <?=CodeGenerator::TAG_CLOSE;?> </p>
+                <?=CodeGenerator::TAG_OPEN;?> endif; <?=CodeGenerator::TAG_CLOSE;?>
+
+            </td>
+        </tr>
+    </tfoot>
+</table>

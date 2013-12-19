@@ -1,0 +1,78 @@
+<?=CodeGenerator::TAG_OPEN_SHORT;?> BarView::renderBar('messages'); <?=CodeGenerator::TAG_CLOSE;?>
+
+<div class="dialog" style="padding: 0 250px">
+    
+    <h1>Update #CLASS_NAME#</h1>
+    
+    <div class="fRight">
+        <a href="<?=CodeGenerator::TAG_OPEN_SHORT;?> URI::toPage(); <?=CodeGenerator::TAG_CLOSE;?>" class="linkGoBack">Cancel edition</a>
+    </div>
+
+    <hr />
+    
+    <form method="POST" action="<?=CodeGenerator::TAG_OPEN_SHORT;?> URI::toPage(); <?=CodeGenerator::TAG_CLOSE;?>update/<?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_INSTANCE#->getPrimaryKey(); <?=CodeGenerator::TAG_CLOSE;?>">
+        <?php
+        foreach($mapedColumns as $columnMap):
+            $camelName = SpecialStrings::camelCase($columnMap->getColumnName());
+            $pascalName = SpecialStrings::pascalCase($columnMap->getColumnName());
+            if($columnMap->isForeignKey()):
+                $relatedClassName = SpecialStrings::camelCase($columnMap->getRelatedTableName());
+                $relatedFieldName = SpecialStrings::camelCase($hashColumns[$columnMap->getName()]['field']);
+                $pascalRelatedClassName = SpecialStrings::pascalCase($relatedClassName);
+                $relatedColumnName = SpecialStrings::camelCase($columnMap->getRelatedColumnName());
+            ?>
+
+        <div class="input">
+            <label class="name"><?= $relatedClassName;?></label>
+            <div class="value">
+                <select name="<?= $pascalName;?>">
+                <?=CodeGenerator::TAG_OPEN;?>
+
+                foreach($<?= $pascalRelatedClassName;?>List as $<?= $pascalRelatedClassName;?>Instance):
+                    $selected = #CLASS_INSTANCE#->get<?= $camelName;?>() == $<?= $pascalRelatedClassName;?>Instance->get<?=$relatedColumnName;?>()? ' selected="true"': '';
+                <?=CodeGenerator::TAG_CLOSE;?>
+
+                <option value="<?=CodeGenerator::TAG_OPEN_SHORT;?> $<?= $pascalRelatedClassName;?>Instance->get<?=$relatedColumnName;?>(); <?=CodeGenerator::TAG_CLOSE;?><?=CodeGenerator::TAG_OPEN_SHORT;?> $selected; <?=CodeGenerator::TAG_CLOSE;?>"><?=CodeGenerator::TAG_OPEN_SHORT;?> $<?= $pascalRelatedClassName;?>Instance->get<?= $relatedFieldName;?>(); <?=CodeGenerator::TAG_CLOSE;?></option>
+                <?=CodeGenerator::TAG_OPEN;?>
+
+                endforeach;
+                <?=CodeGenerator::TAG_CLOSE;?>
+
+                </select>
+            </div>
+        </div>
+            <?php
+            elseif(!$columnMap->isPrimaryKey()):
+            ?>
+
+        <div class="input">
+            <label class="name"><?= $camelName;?></label>
+            <div class="value">
+                <?php
+                if($columnMap->getType() == PropelColumnTypes::LONGVARCHAR){
+                ?>
+
+                <textarea name="<?= $pascalName;?>" rows="2" cols="25"><?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_INSTANCE#->get<?= $camelName;?>(); <?=CodeGenerator::TAG_CLOSE;?></textarea>
+                <?php
+                }else{
+                ?>
+
+                <input type="text" name="<?=$pascalName;?>" value="<?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_INSTANCE#->get<?= $camelName;?>(); <?=CodeGenerator::TAG_CLOSE;?>" <?= $columnMap->getSize()? 'maxlength="'.$columnMap->getSize().'" ': '';?>/>
+                <?php
+                }
+                ?>
+
+            </div>
+        </div>
+            <?php
+            endif;
+        endforeach;
+        ?>
+        <div class="input">
+            <div class="value">
+                <input type="submit" name="update" value="Update" />
+            </div>
+        </div>
+
+    </form>
+</div>
