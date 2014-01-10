@@ -117,7 +117,7 @@ class Headers
     {
         if(!headers_sent()){
             $type = $perm? '301 Moved Permanently': '302 Moved Temporarily';
-            header('HTTP/1.1 '.$type);
+            header($_SERVER['SERVER_PROTOCOL'].' '.$type);
             header('Location: '.$uri, true, $perm? 301: 302);
             exit();
         }
@@ -126,4 +126,3 @@ class Headers
     }
 
 }
-?>

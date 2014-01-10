@@ -29,6 +29,7 @@ class Autoload
         'ConfigBase'                =>  'base/ConfigBase',
         'Configs'                   =>  'base/Configs',
         'FrontController'           =>  'base/FrontController',
+        'HttpManager'               =>  'base/HttpManager',
         'IAjaxUpdate'               =>  'base/IAjaxUpdate',
         'IChocalaErrorsManager'     =>  'base/IChocalaErrorsManager',
         'IController'               =>  'base/IController',
@@ -47,6 +48,8 @@ class Autoload
         
         'ClassMapHelper'            =>  'generator/ClassMapHelper',
         'CodeGenerator'             =>  'generator/CodeGenerator',
+        
+        'DBConfig'                  =>  'orm/DBConfig',
         
         'AjaxView'                  =>  'presentation/AjaxView',
         'BarView'                   =>  'presentation/BarView',
@@ -139,4 +142,3 @@ class Autoload
     
 }
 spl_autoload_register('Autoload::loading');
-?>

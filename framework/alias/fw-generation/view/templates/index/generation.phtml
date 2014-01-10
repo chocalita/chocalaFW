@@ -1,0 +1,31 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <div class="fLeft">
+            
+        </div>
+        <div class="fRight" style="width: 600px;">
+            
+            <h1>CRUD Generation</h1>
+            <h2><?=$mappedClass;?></h2>
+            <ul>
+                <?php
+                $generationLink = URI::toPage().'generation/';
+                foreach($mapedColumns as $className => $columnMap):
+                ?>
+                <li>
+                    <b><?=str_replace('_', ' ', $columnMap->getColumnName());?></b>
+                    <br />
+                    <?=$columnMap->getType();?> (<?=$columnMap->getSize();?>)
+                    <br />
+                    <?=$columnMap->getName();?>
+                </li>
+                <?php
+                endforeach;
+                ?>
+            </ul>
+        </div>
+    </body>
+</html>

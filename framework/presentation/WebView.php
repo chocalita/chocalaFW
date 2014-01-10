@@ -169,4 +169,3 @@ class WebView implements IView
     }
 
 }
-?>

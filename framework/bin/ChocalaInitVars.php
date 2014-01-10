@@ -107,4 +107,3 @@ abstract class ChocalaInitVars
     }
 
 }
-?>

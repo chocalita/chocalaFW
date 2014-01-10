@@ -1,0 +1,36 @@
+<html>
+<head>
+
+</head>
+<body>
+    <div class="twoSides">
+        <div class="shortSide">
+            <?//=  BarsHelper::renderBar('menuGen');?>
+        </div>
+        <div class="largeSide">
+            <h1>Application Configs</h1>
+            <table class="tList" width="100%">
+                <thead>
+                    <tr>
+                        <th width="35%">Config</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach (Configs::configsList() as $configObj):
+                    ?>
+                    <tr>
+                        <td class="left bold"><?=$configObj->getName();?></td>
+                        <td class="left"><?=$configObj->getValue();?></td>
+                    </tr>
+                    <?php
+                    endforeach;
+                    ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

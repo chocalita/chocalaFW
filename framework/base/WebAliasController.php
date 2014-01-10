@@ -17,4 +17,3 @@ abstract class WebAliasController extends WebController
     }
 
 }
-?>

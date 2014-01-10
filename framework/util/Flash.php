@@ -197,4 +197,3 @@ class Flash implements ISingleton
     }
 
 }
-?>

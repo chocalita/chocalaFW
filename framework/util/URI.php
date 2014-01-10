@@ -318,4 +318,3 @@ class URI implements ISingleton
     }
 
 }
-?>

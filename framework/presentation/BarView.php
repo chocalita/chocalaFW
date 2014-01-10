@@ -7,9 +7,9 @@
 class BarView implements IView
 {
 
-    const BAR_SUFFIX = 'Helper';
+    const BAR_SUFFIX = 'BarsHelper';
 
-    const DEFAULT_BAR = 'AppBars';
+    const DEFAULT_BAR = 'App';
 
     protected static $cache = array();
 
@@ -61,7 +61,7 @@ class BarView implements IView
     {
         if($module != ''){
             $path = ALIAS_DIR.str_replace('.', DIRECTORY_SEPARATOR,
-                    $module.'.view.bars.'.$template);
+                    ChocalaAlias::aliasDir($module).'.view.bars.'.$template);
         }else{
             $path = BARS_DIR.$template;
         }
@@ -86,7 +86,7 @@ class BarView implements IView
      * @param boolean $cached
      * @return string
      */
-    final static public function renderBar($name, $cached=false)
+    static public function renderBar($name, $cached=false)
     {
         try{
             if($cached && isset(self::$cache[$name])){
@@ -94,15 +94,17 @@ class BarView implements IView
             }
             $parts = explode('.', $name);
             $barName = $parts[sizeof($parts)-1];
+            $nReplacements = -1;
             $class = str_replace(self::BAR_SUFFIX, '',
                     sizeof($parts)>1? $parts[sizeof($parts)-2]: 
-                self::DEFAULT_BAR, -1).self::BAR_SUFFIX;
+                self::DEFAULT_BAR, $nReplacements).self::BAR_SUFFIX;
             $alias = '';
             if(sizeof($parts)<3){
                 ChocalaBase::import('View.bars.'.$class);
             }else{
                 $alias = $parts[sizeof($parts)-3];
-                ChocalaBase::import('Alias.'.$alias.'.view.bars.'.$class);
+                ChocalaBase::import('Alias.'.ChocalaAlias::aliasDir($alias).
+                        '.view.bars.'.$class);
             }
             $rc = new ReflectionClass($class);
             $bar = $rc->newInstance();
@@ -118,4 +120,3 @@ class BarView implements IView
     }
 
 }
-?>

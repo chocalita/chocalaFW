@@ -13,4 +13,3 @@ interface IFilter
     public function afterView();
 
 }
-?>

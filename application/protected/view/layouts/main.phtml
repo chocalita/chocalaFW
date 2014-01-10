@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width , initial-scale=1 ,maximum-scale=1" />
+        <meta http-equiv="Content-language" content="es" />
+        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="noodp, noydir" />
+        <title>Chocala Framework</title>
+        <link rel="stylesheet" type="text/css" href="<?= CSS_WEB;?>normalize.css"/>
+        <link rel="stylesheet" type="text/css" href="<?= CSS_WEB;?>styleLess.css"/>
+        <link type="text/css" href="<?= JQUERY_WEB; ?>themes/custom/jquery-ui.custom.min.css" rel="stylesheet" />
+        <script language="javascript" type="text/javascript" src="<?= JQUERY_WEB; ?>jquery.js"></script>
+        <script type="text/javascript" src="<?= JQUERY_WEB; ?>ui/jquery-ui.custom.min.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+        });
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <?= BarView::renderBar('header'); ?>
+
+            <div id="bodyWork">
+                <?= $__Content; ?>
+            </div>
+            <div class="clear"></div>
+
+            <?= BarView::renderBar('footer'); ?>
+            
+        </div>
+    </body>
+</html>

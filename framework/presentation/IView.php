@@ -15,4 +15,3 @@ interface IView
     public function setVars($vars);
 
 }
-?>

@@ -25,4 +25,3 @@ class Config extends ConfigBase
     }
 
 }
-?>

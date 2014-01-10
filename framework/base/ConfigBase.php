@@ -137,4 +137,3 @@ abstract class ConfigBase
     }
 
 }
-?>

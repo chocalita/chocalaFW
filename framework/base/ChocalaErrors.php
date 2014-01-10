@@ -22,4 +22,3 @@ class ChocalaErrors
     const CONFIG_MALFORMED_DECLARATION = 'Config is malformed in its declaration';
 
 }
-?>

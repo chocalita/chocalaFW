@@ -14,4 +14,3 @@ interface ISingletonRegistry extends ISingleton
 
     public static function userControl();
 }
-?>

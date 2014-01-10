@@ -1,0 +1,92 @@
+<html>
+<head>
+
+</head>
+<body>
+    <div class="twoSides">
+        <div class="shortSide">
+            
+        </div>
+        <div class="largeSide">
+            
+            <h1><?=__('CRUD Generation');?></h1>
+            <h2><?=__('Class').': '.$mapedClass;?></h2>
+            
+            <form action="<?=URI::toPage().'build/'.$mapedClass;?>" method="GET">
+                <table class="tList" width="100%">
+                    <thead>
+                        <th>Attribute</th>
+                        <th>Type</th>
+                        <th width="40">Size</th>
+                        <th width="70">Nullable</th>
+                        <th>Default</th>
+                        <th>Data List Display</th>
+                        <th>Related Field</th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach($mapedColumns as $className => $columnMap):
+                            $camelName = SpecialStrings::camelCase($columnMap->getColumnName());
+                            $pascalName = SpecialStrings::pascalCase($columnMap->getColumnName());
+                            $relatedClassName = $columnMap->isForeignKey()? SpecialStrings::camelCase($columnMap->getRelatedTableName()): '';
+                        ?>
+                        <tr>
+                            <td><?=$pascalName;?>
+                                <?php
+                                if($columnMap->isForeignKey()):
+                                ?>
+                                    <br />
+                                    <span class="smallized">related with <?=$relatedClassName;?> class</span>
+                                <?php
+                                endif;
+                                ?>
+                                <?/*<?=$columnMap->getName();?>*/?>
+                                <?/*<?=$columnMap->getRelatedColumnName();?>*/?>
+                            </td>
+                            <td><?=$columnMap->getType();?></td>
+                            <td class="right"><?=$columnMap->getSize()?: '***';?></td>
+                            <td class="center"><?=$columnMap->isNotNull()? __('No'): __('Yes');?></td>
+                            <td><?=$columnMap->getDefaultValue();?></td>
+                            <td class="center">
+                                <input type="checkbox" name="_<?=$columnMap->getName();?>" value="yes" <?=$columnMap->isPrimaryKey()? '': 'checked';?> /> <label for="<?=$columnMap->getName();?>"></label>
+                            </td>
+                            <td>
+                                <?php
+                                if($columnMap->isPrimaryKey()):
+                                ?>
+                                <span class="smallized">Default counter</span>
+                                <?php
+                                elseif($columnMap->isForeignKey()):
+                                ?>
+                                <select name="_field_<?=$columnMap->getName();?>">
+                                    <?php
+                                    foreach (ClassMapHelper::columnsFrom(ucfirst($columnMap->getRelatedTableName())) as $k => $v){
+                                        ?>
+                                    <option value="<?=$v->getName();?>"><?=$v->getPhpName();?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                                <span class="smallized"><br /><?=__('Displayed related class attrib', array('class' => $relatedClassName));?></span>
+                                <?php
+                                else:
+                                ?>
+                                ***
+                                <?php
+                                endif;
+                                ?>
+                            </td>
+                        </tr>
+                        <?php
+                        endforeach;
+                        ?>
+                    </tbody>
+                </table>
+                
+                <input type="submit" name="generate" value="Generate" />
+            </form>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

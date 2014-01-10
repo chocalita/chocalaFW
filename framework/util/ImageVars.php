@@ -47,4 +47,3 @@ class ImageVars
     const NO_IMAGE_FORMAT = 'png';
 
 }
-?>

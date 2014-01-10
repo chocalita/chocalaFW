@@ -1,0 +1,55 @@
+<html>
+<head>
+
+</head>
+<body>
+    <div class="twoSides">
+        <div class="shortSide">
+            <?//=  BarsHelper::renderBar('menuGen');?>
+        </div>
+        <div class="largeSide">
+            <h1><?=__('Datasources Configs');?></h1>
+            <span class="bold">Environment: <span class="underline red"><?=$env;?></span></span>
+            <table class="tList" width="100%">
+                <thead>
+                    <tr>
+                        <th width="35%">Config</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="left bold">Adapter</td>
+                        <td class="left"><?=$conf['adapter'];?></td>
+                    </tr>
+                    <tr>
+                        <td class="left bold">Driver</td>
+                        <td class="left"><?=$conf['driver'];?></td>
+                    </tr>
+                    <tr>
+                        <td class="left bold">Datasource</td>
+                        <td class="left"><?=$conf['datasource'];?></td>
+                    </tr>
+                    <tr>
+                        <td class="left bold">Host</td>
+                        <td class="left"><?=$conf['host'];?></td>
+                    </tr>
+                    <tr>
+                        <td class="left bold">Port</td>
+                        <td class="left"><?=$conf['port'];?></td>
+                    </tr>
+                    <tr>
+                        <td class="left bold">DB Name</td>
+                        <td class="left"><?=$conf['dbname'];?></td>
+                    </tr>
+                    <tr>
+                        <td class="left bold">User</td>
+                        <td class="left"><?=$conf['user'];?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

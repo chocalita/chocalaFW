@@ -14,7 +14,8 @@ class ChocalaFilter implements IFilter{
 
     protected $id = null;
 
-    final public function __construct(){
+    final public function __construct()
+    {
         $glbs = GlobalVars::instance();
         $this->moduleName = $glbs->module();
         $this->controllerName = $glbs->controller();
@@ -22,14 +23,10 @@ class ChocalaFilter implements IFilter{
         $this->id = $glbs->id();
     }
 
-    public function beforeAction(){
-    }
+    public function beforeAction(){}
 
-    public function afterAction(){
-    }
+    public function afterAction(){}
 
-    public function afterView(){
-    }
+    public function afterView(){}
 
 }
-?>

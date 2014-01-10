@@ -19,4 +19,3 @@ interface IController
     public function isRendered();
 
 }
-?>

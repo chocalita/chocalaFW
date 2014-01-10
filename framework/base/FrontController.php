@@ -149,18 +149,15 @@ class FrontController implements IFrontController, ISingleton
                 }
             }else{
                 throw new ChocalaException(ChocalaErrors::CLASS_NOT_FOUND);
-//            }else{
-//                header($_SERVER["SERVER_PROTOCOL"].' 404 Not found');
-//                header("Status: 404 Not Found");
-//                $_SERVER["REDIRECT_STATUS"] = 404;
-//                echo "<h1>404 Not Found</h1>";
-//                exit();
             }
         }catch(ChocalaException $che){
-            print_r($che); exit();
+            //print_r($che); exit();
+            
+            HttpManager::responseAs404();
+
             ChocalaErrorsManager::manage($che);
             if(Configs::value('app.run.environment') == 'PRODUCTION'){
-                header("HTTP/1.1 301 Moved Permanently");
+                header($_SERVER['SERVER_PROTOCOL'].' 301 Moved Permanently');
                 header('Location: '.WEB_ROOT);
                 exit();
             }else{
@@ -217,7 +214,23 @@ class FrontController implements IFrontController, ISingleton
             $moduleInc = $this->module;
             $module = $this->module;
             $action = $this->action;
-            $controller = new $class();
+            $this->controllerCall($module, $class, $action);
+        }catch(ChocalaException $che){
+            print_r($che);
+            ChocalaErrorsManager::manage($che);
+        }
+    }
+    
+    /**
+     * 
+     * @param string $module
+     * @param string $class
+     * @param string $action
+     */
+    public function controllerCall($module, $class, $action)
+    {
+        $controller = new $class();
+        if($controller->isAllowedMethod($action)){
             foreach(ChocalaFiltersManager::filters() as $filter){
                 $filter->beforeAction();
             }
@@ -233,9 +246,8 @@ class FrontController implements IFrontController, ISingleton
             foreach(ChocalaFiltersManager::filters() as $filter){
                 $filter->afterView();
             }
-        }catch(ChocalaException $che){
-            print_r($che);
-            ChocalaErrorsManager::manage($che);
+        }else{
+            HttpManager::responseAs405();
         }
     }
 

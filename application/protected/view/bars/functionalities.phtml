@@ -1,0 +1,54 @@
+<div class="fRight">
+<?php
+if(true || PageControl::canBack()){
+?>
+<a href="<?=WEB_ROOT.str_replace(WEB_ROOT,'',PageControl::backURI());?>" title="Volver" class="vtip">
+    <img src="<?=ICO_32;?>back.png" alt="Volver" title="Volver" class="imgHand vtip" />
+</a>
+<?php
+}
+if(PageControl::canAdd()){
+?>
+<link type="text/css" href="<?=JQUERY_WEB;?>themes/ui-lightness/jquery.ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="<?=JQUERY_WEB;?>ui/jquery.ui.mouse.js"></script>
+<script type="text/javascript" src="<?=JQUERY_WEB;?>ui/jquery.ui.draggable.js"></script>
+<script type="text/javascript" src="<?=JQUERY_WEB;?>ui/jquery.ui.position.js"></script>
+<script type="text/javascript" src="<?=JQUERY_WEB;?>ui/jquery.ui.resizable.js"></script>
+<script type="text/javascript" src="<?=JQUERY_WEB;?>ui/jquery.ui.dialog.js"></script>
+<script type="text/javascript" language="javascript">
+$(function() {
+    $("#panelAdd").dialog({
+        bgiframe: true,
+        autoOpen: false,
+        width: 'auto',
+        modal: true,
+        resizable: false
+    });
+    $('#cancel').click(function() {
+        $('#panelAdd').dialog('close');
+    })
+});
+</script>
+<img src="<?=ICO_32;?>add.png" alt="Agregar datos" title="Agregar datos" class="imgHand vtip" onclick="$('#panelAdd').dialog('open');" />
+<link type="text/css" href="<?=JQUERY_WEB;?>jquery.validate.css" rel="stylesheet" />
+<script type="text/javascript" src="<?=JQUERY_WEB;?>jquery.validate.js"></script>
+<?php
+}
+if(PageControl::canRefresh()){
+?>
+<a href="<?=WEB_ROOT.URI::toId()?>" title="Refrescar pagina" class="vtip">
+    <img src="<?=ICO_32;?>reload.png" alt="Refrescar pagina" title="Refrescar pagina" class="imgHand vtip" />
+</a>
+<?php
+}
+/*
+if(AjaxGrid::instance()->permission()){
+    ?>
+    <script type="text/javascript" src="<?=CHAJAX_WEB;?>Chajax.js"></script>
+    <script type="text/javascript" language="javascript">
+        chajax=new Chajax('<?=AjaxGrid::instance()->mainAction().'ajaxUpdate/';?>','chajax','<?=WEB_ROOT;?>');
+    </script>
+    <?php
+}*/
+?>
+</div>

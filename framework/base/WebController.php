@@ -9,6 +9,8 @@ require_once('ChocalaVars.php');
 abstract class WebController implements IController
 {
 
+    protected $allowedMethods = array();
+    
     /**
      *
      * @var boolean
@@ -133,5 +135,20 @@ abstract class WebController implements IController
         $this->setVar('__exceptions', ChocalaErrorsManager::exceptions());
     }
 
+    /**
+     * Verify if the action is requested as a allowed method
+     * 
+     * @param string $action
+     * @param string $method
+     * @return boolean
+     */
+    final public function isAllowedMethod($action)
+    {
+        $method = HttpManager::requestMethod();
+        if(isset($this->allowedMethods[$action])){
+            return strtoupper(trim($this->allowedMethods[$action])) == $method;
+        }
+        return true;
+    }
+
 }
-?>

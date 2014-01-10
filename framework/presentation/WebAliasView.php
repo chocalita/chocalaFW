@@ -80,4 +80,3 @@ class WebAliasView extends WebView
     }
 
 }
-?>

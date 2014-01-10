@@ -123,4 +123,3 @@ class #CLASS_NAME#Controller extends WebController
     }
 
 }
-<?= CodeGenerator::TAG_CLOSE;?>

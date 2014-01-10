@@ -140,4 +140,3 @@ if(!function_exists('__()')){
         return ChocalaI18N::translate($text, $args);
     }
 }
-?>

@@ -100,4 +100,3 @@ class SingletonRegistry implements ISingletonRegistry
     }
 
 }
-?>

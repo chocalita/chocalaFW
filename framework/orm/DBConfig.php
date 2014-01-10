@@ -48,7 +48,7 @@ class DBConfig
             'classmap' => include(MAPPING_DIR. 'classmap-conf.php')
         );
     }
-    
+
     public static function dsn($conf)
     {
         $dsn = $conf['driver'].':';
@@ -90,4 +90,3 @@ class DBConfig
 
 }
 return DBConfig::configs();
-?>

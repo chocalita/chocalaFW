@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h1><?=$mappedClass;?> List</h1>
+    <br />
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <?=  CodeGenerator::MAIN_CLASS;?>//cabecera de foreach
+            <?php
+            foreach($mapedColumns as $className => $columnMap):
+            ?>
+            <tr>
+                <td></td>
+            </tr>
+            <?php
+            endforeach;
+            ?>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+    <ul>
+        <li>
+            <b><?=str_replace('_', ' ', $columnMap->getColumnName());?></b>
+            <br />
+            <?=$columnMap->getType();?> (<?=$columnMap->getSize();?>)
+            <br />
+            <?=$columnMap->getName();?>
+        </li>
+    </ul>
+</body>
+</html>
+
+<h1>Plantilla generada por Chocala Framework</h1>
+<div class="boxGray">
+    <h2>Chocala Framework</h2>
+    <p>
+        <div class="formGray">
+            <input type="text" id="" name="" class="textField" size="50" maxlength="100" />
+            <input type="submit" id="" name="" class="button" value="Buscar" onclick=""/>
+            <br />
+            <span>Ej. Profesores de m�sica de Madrid</span>
+        </div>
+        <br />
+        <a href="" >B�squeda Avanzada</a>
+        <a href="" >B�squeda de Productos y Servicios</a>
+        <a href="" >Actividades A-Z</a>
+    </p>
+    <div class="footGray"></div>
+</div>

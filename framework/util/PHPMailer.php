@@ -2960,4 +2960,3 @@ class PHPMailer
     }
 
 }
-?>

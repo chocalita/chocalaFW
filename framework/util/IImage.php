@@ -15,4 +15,3 @@ interface IImage
     public function saveResizeMax($filename, $maxTamanio=0);
 
 }
-?>

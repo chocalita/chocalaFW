@@ -5,6 +5,7 @@
  */
 interface IFrontController
 {
+
     public function route();
+
 }
-?>

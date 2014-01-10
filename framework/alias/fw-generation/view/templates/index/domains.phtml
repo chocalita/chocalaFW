@@ -1,0 +1,38 @@
+<html>
+<head>
+
+</head>
+<body>
+    <div class="twoSides">
+        <div class="shortSide">
+            <?//=  BarsHelper::renderBar('menuGen');?>
+        </div>
+        <div class="largeSide">
+            <h1><?=__('Domain classes');?></h1>
+            <?php
+            if(sizeof($mapedClasses) > 0):
+            ?>
+                <p><?=__('Select a class');?>:</p>
+                <ul>
+                    <?php
+                    $generationLink = URI::toPage().'domainClass/';
+                    foreach($mapedClasses as $className => $packageName){
+                    ?>
+                    <li><a href="<?=$generationLink.$className;?>"><?=$packageName;?></a></li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+            <?php
+            else :
+            ?>
+                <p><?=__('Classes not found');?>, please complete the reverse mapping from database</p>
+                <p><a href="<?=URI::toPage().'classes';?>">>> <?=__('Go to mapping generation');?></a></p>  
+            <?php
+            endif;
+            ?>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

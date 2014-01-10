@@ -65,4 +65,3 @@ class ContentType
     const TYPE_ZIP = 'application/zip';
 
 }
-?>

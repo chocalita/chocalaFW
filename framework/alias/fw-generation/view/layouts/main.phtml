@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width , initial-scale=1 ,maximum-scale=1" />
+        <meta http-equiv="Content-language" content="es" />
+        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="noodp, noydir" />
+        <title>Chocala Framework</title>
+        <link rel="stylesheet" type="text/css" href="<?= CSS_WEB;?>normalize.css"/>
+        <link rel="stylesheet" type="text/css" href="<?= CSS_WEB;?>style.css"/>
+        <link rel="stylesheet" type="text/css" href="<?= CSS_WEB;?>menuGen.css"/>
+        <link type="text/css" href="<?= JQUERY_WEB; ?>themes/custom/jquery-ui.custom.min.css" rel="stylesheet" />
+        <script language="javascript" type="text/javascript" src="<?= JQUERY_WEB; ?>jquery.js"></script>
+        <script type="text/javascript" src="<?= JQUERY_WEB; ?>ui/jquery-ui.custom.min.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+        });
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+            
+            <?= BarView::renderBar('chocala-gen.Generation.header'); ?>
+
+            <div id="bodyWork">
+                <div class="menu_gen">
+                    <ul>
+                        <li><a href="<?=URI::toPage();?>">General Configs</a></li>
+                        <li><a href="<?=URI::toPage().'dbConfigs';?>">Datasources Configs</a></li>
+                        <li><a href="<?=URI::toPage().'classes';?>">Class Mapping</a></li>
+                        <li><a href="<?=URI::toPage().'domains';?>">Scaffolding</a></li>
+                        <li><a href="#">Summary Info</a></li>
+                    </ul>
+                </div>
+                <?= $__Content; ?>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+
+            <?= BarView::renderBar('chocala-gen.Generation.footer'); ?>
+            
+        </div>
+    </body>
+</html>

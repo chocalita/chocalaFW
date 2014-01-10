@@ -58,4 +58,3 @@ class ChocalaErrorsManager implements IChocalaErrorsManager, ISingleton
     }
 
 }
-?>

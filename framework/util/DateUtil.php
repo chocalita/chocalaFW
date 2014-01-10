@@ -145,4 +145,3 @@ class DateUtil extends DateTime
     }
 
 }
-?>
