@@ -66,6 +66,7 @@ class BarView implements IView
             $path = BARS_DIR.$template;
         }
         $barFile = $path.Chocala::TEMPLATE_EXTENSION;
+        //TODO: implements error handler
         //if(Chocala::exist($barFile)){
             ob_start();
             @extract($this->vars, EXTR_OVERWRITE);
@@ -73,11 +74,10 @@ class BarView implements IView
             $htmlContent = ob_get_contents();
             ob_end_clean();
             return $htmlContent;
-        /*
-        }else{
-            throw new ChocalaException(ChocalaErrors::FILE_NOT_FOUND);
-        }
-        /**/
+        //}else{
+            //HttpManager::responseAs405();
+            //throw new ChocalaException(ChocalaErrors::FILE_NOT_FOUND);
+        //}
     }
 
     /**

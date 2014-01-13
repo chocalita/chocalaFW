@@ -252,4 +252,3 @@ class FrontController implements IFrontController, ISingleton
     }
 
 }
-?>

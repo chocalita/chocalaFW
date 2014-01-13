@@ -70,4 +70,22 @@ class HttpManager
         exit();
     }
 
+    /**
+     * 
+     */
+    public static function responseAs500()
+    {
+        $code = 500;
+        $title = "Server Internal Error";
+        $message = "The request was made of a resource using a request method ".
+                "not supported by that resource";
+        header($_SERVER['SERVER_PROTOCOL']. ' 500 Server Internal Error');
+        header("Status: $code $title");
+        $_SERVER["REDIRECT_STATUS"] = $code;
+        echo "<h1>$title</h1>";
+        echo "<h3>$code</h3>";
+        echo $message;
+        exit();
+    }
+
 }
