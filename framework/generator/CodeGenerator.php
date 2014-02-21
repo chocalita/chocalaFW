@@ -2,7 +2,7 @@
 /**
  * Description of CodeGenerator
  *
- * @author Administrador
+ * @author ypra
  */
 class CodeGenerator
 {
@@ -262,7 +262,7 @@ class CodeGenerator
         file_put_contents($runtimeFilePath, $content);
         // creating runtime-con.xml
         $runtimePath = self::templatesPath().'adapters'.DIRECTORY_SEPARATOR.
-                $conf['adapter'].'.properties';
+                'runtime-conf.xml';
         $content = file_get_contents($runtimePath);
         $content = str_replace('#DBNAME#', $conf['dbname'], $content);
         $content = str_replace('#ADAPTER#', $conf['adapter'], $content);

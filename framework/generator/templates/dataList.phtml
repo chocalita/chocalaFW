@@ -1,10 +1,10 @@
 <?=CodeGenerator::TAG_OPEN_SHORT;?> BarView::renderBar('messages'); <?=CodeGenerator::TAG_CLOSE;?>
 
-<h1>#CLASS_NAME#s List</h1>
-
 <div class="fRight">
     <a href="<?=CodeGenerator::TAG_OPEN_SHORT;?> URI::toPage().'create'; <?=CodeGenerator::TAG_CLOSE;?>" class="linkAdd">Create #CLASS_NAME#</a>
 </div>
+<h1>#CLASS_NAME#s List</h1>
+
 <hr class="clear" />
 
 <table class="tList tSorter" align="center" width="100%">
@@ -31,6 +31,12 @@
             endif;
         endforeach;
         ?>
+            
+            <th>Details</th>
+
+            <th>Edit</th>
+
+            <th>Delete</th>
 
         </tr>
     </thead>
@@ -67,6 +73,17 @@
             endforeach;
             ?>
 
+            <td class="center">
+                <a href="<?=CodeGenerator::TAG_OPEN_SHORT;?> URI::toPage().'show/'.#CLASS_INSTANCE#->getPrimaryKey(); <?=CodeGenerator::TAG_CLOSE;?>" class=""><img src="<?=CodeGenerator::TAG_OPEN_SHORT;?> ICO_16.'view_details.png' <?=CodeGenerator::TAG_CLOSE;?>" alt="Show" title="Show" /></a>
+            </td>
+
+            <td class="center">
+                <a href="<?=CodeGenerator::TAG_OPEN_SHORT;?> URI::toPage().'edit/'.#CLASS_INSTANCE#->getPrimaryKey(); <?=CodeGenerator::TAG_CLOSE;?>" class=""><img src="<?=CodeGenerator::TAG_OPEN_SHORT;?> ICO_16.'edit.png' <?=CodeGenerator::TAG_CLOSE;?>" alt="Edit" title="Edit" /></a>
+            </td>
+
+            <td class="center">
+                <a href="<?=CodeGenerator::TAG_OPEN_SHORT;?> URI::toPage().'delete/'.#CLASS_INSTANCE#->getPrimaryKey(); <?=CodeGenerator::TAG_CLOSE;?>" class=""><img src="<?=CodeGenerator::TAG_OPEN_SHORT;?> ICO_16.'delete.png' <?=CodeGenerator::TAG_CLOSE;?>" alt="Edit" title="Edit" /></a>
+            </td>
         </tr>
         <?=CodeGenerator::TAG_OPEN;?>
 

@@ -12,7 +12,7 @@ h1,
 h2,
 h3 {
   color: #555;
-  margin: 0 0 15px;
+  margin: 10px 0;
 }
 h1 {
   font-size: 2em;
@@ -228,7 +228,7 @@ input.date {
   width: 940px;
 }
 #bodyWork {
-  padding-bottom: 30px;
+  padding: 0 0 30px 0;
   position: relative;
 }
 #header,

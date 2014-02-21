@@ -2,14 +2,14 @@
 
 <div class="dialog" style="padding: 0 250px">
 
-    <h1>#CLASS_NAME# Details</h1>
-
     <div class="fRight">
-        <a href="<?=CodeGenerator::TAG_OPEN_SHORT;?> URI::toPage().'edit/'.#CLASS_INSTANCE#->getPrimaryKey(); <?=CodeGenerator::TAG_CLOSE;?>" class="linkGoBack">Edit #CLASS_NAME#</a>
-        <a href="<?=CodeGenerator::TAG_OPEN_SHORT;?> URI::toPage().'delete/'.#CLASS_INSTANCE#->getPrimaryKey(); <?=CodeGenerator::TAG_CLOSE;?>" class="linkGoBack" onclick="return confirm('¿Do you sure to delete this record?');">Delete #CLASS_NAME#</a>
+        <a href="<?=CodeGenerator::TAG_OPEN_SHORT;?> URI::toPage().'dataList'; <?=CodeGenerator::TAG_CLOSE;?>" class="linkGoBack">Go to data list</a>
+        <a href="<?=CodeGenerator::TAG_OPEN_SHORT;?> URI::toPage().'edit/'.#CLASS_INSTANCE#->getPrimaryKey(); <?=CodeGenerator::TAG_CLOSE;?>" class="linkEdit">Edit #CLASS_NAME#</a>
+        <a href="<?=CodeGenerator::TAG_OPEN_SHORT;?> URI::toPage().'delete/'.#CLASS_INSTANCE#->getPrimaryKey(); <?=CodeGenerator::TAG_CLOSE;?>" class="linkDelete" onclick="return confirm('¿Do you sure to delete this record?');">Delete #CLASS_NAME#</a>
     </div>
-
+    <h1>#CLASS_NAME# Details</h1>
     <hr />
+    
     <?php
     foreach($mapedColumns as $columnMap):
         $camelName = SpecialStrings::camelCase($columnMap->getColumnName());

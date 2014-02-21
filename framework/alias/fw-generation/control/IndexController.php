@@ -29,20 +29,38 @@ class IndexController extends WebAliasController
     }
 
     public function mapping()
-    {
+    {   
+        $phpinfo = Configs::phpinfo();
+        //print_r($phpinfo['Environment']);
+        //echo $phpinfo['Environment']['PHP_COMMANDS'];
+        $PHP_COMMAND = $phpinfo['Environment']['PHP_COMMANDS'];
         $dirs = array('generator', 'mapping', 'gen');
         $result = '';
-        if(isset($_POST['reverse'])){
-            $result.= system(CHOCALA_DIR.implode(DIRECTORY_SEPARATOR, $dirs).
-                    ' reverse > '.MAPPING_DIR.'output'.DIRECTORY_SEPARATOR.
-                    time().'-rev.log');
+        CodeGenerator::generateGenerationConfigs();
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
+            if(isset($_POST['reverse'])){
+                $result.= system(CHOCALA_DIR.implode(DIRECTORY_SEPARATOR,$dirs).
+                        ' '.$PHP_COMMAND.
+                        ' reverse > '.MAPPING_DIR.'output'.DIRECTORY_SEPARATOR.
+                        time().'-rev.log');
+            }
+            if(isset($_POST['mapping'])){
+                $result.= system(CHOCALA_DIR.implode(DIRECTORY_SEPARATOR,$dirs).
+                        ' '.$PHP_COMMAND.
+                        ' > '.MAPPING_DIR.'output'.DIRECTORY_SEPARATOR.time().
+                        '-gen.log');
+            }
+        } else {
+            echo "Es Linux";
         }
-        if(isset($_POST['mapping'])){
-            $result.= system(CHOCALA_DIR.implode(DIRECTORY_SEPARATOR, $dirs).
-                    ' > '.MAPPING_DIR.'output'.DIRECTORY_SEPARATOR.time().
-                    '-gen.log');
-        }
-        $this->render($result);
+        $env = Configs::value('app.run.environment');
+        $conf = DBConfig::envConfigs($env);
+        $this->setVar('env', $env);
+        $this->setVar('conf', $conf);
+        $this->setVar('dsn', DBConfig::dsn($conf));
+        $this->setVar('hasReverse', isset($_POST['reverse']));
+        $this->setVar('hasMapping', isset($_POST['mapping']));
+        //$this->render($result);
     }
 
     public function domains()

@@ -45,7 +45,6 @@ class #CLASS_NAME#Controller extends WebController
         }
     }
     ?>
-
     }
 
     public function save()
@@ -103,7 +102,7 @@ class #CLASS_NAME#Controller extends WebController
 
     public function delete()
     {
-        #CLASS_INSTANCE# = $this->getObject();
+        #CLASS_INSTANCE# = $this->getObjectIfExist();
         try {
             #CLASS_INSTANCE#->delete();
             $this->redirectTo(array('action' => 'dataList'));

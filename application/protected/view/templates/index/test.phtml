@@ -1,108 +1,137 @@
-<ul class="box-list">
-    <li>
-        <div class="box">
-            <div class="right-corner">
-                <div class="left-corner">
-                    <div class="box1">
-                        <div class="inner">
-                            <h3><span class="softBlue">HMVC</span> Framework</h3>
-                            <p>
-                                A natural byproduct of striving for increased 
-                                code modularity, re-usability, and maintaining a better separation 
-                                of concerns.
-                                <!--Chocala is a Model-View-Controller based Framework that provides 
-                                a robust but lightweight structure for complex developments.-->
-                                <a href="#"><img src="images/arrow.gif" alt="" /></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li class="alt">
-        <div class="box">
-            <div class="right-corner">
-                <div class="left-corner">
-                    <div class="box1">
-                        <div class="inner">
-                            <h3><span class="softBlue">Appbuilder</span> Generator</h3>
-                            <p>
-                                The engine generator builds applications including control, 
-                                data sheet, metadata and template files.
-                                <a href="#"><img src="images/arrow.gif" alt="" /></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li class="last">
-        <div class="box">
-            <div class="right-corner">
-                <div class="left-corner">
-                    <div class="box1">
-                        <div class="inner">
-                            <h3><span class="softBlue">Fast</span> Development</h3>
-                            <p>
-                                A simple environment that provides a robust structure with layers 
-                                that optimize time and development resources
-                                <a href="#"><img src="images/arrow.gif" alt="" /></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<script type="text/javascript" src="<?=WEB_ROOT;?>syntaxHighlighter/shCore.js"></script>
+<script type="text/javascript" src="<?=WEB_ROOT;?>syntaxHighlighter/shBrushJScript.js"></script>
+<script type="text/javascript" src="<?=WEB_ROOT;?>syntaxHighlighter/shBrushBash.js"></script>
+<script type="text/javascript" src="<?=WEB_ROOT;?>syntaxHighlighter/shBrushPhp.js"></script>
+<link href="<?=WEB_ROOT;?>syntaxHighlighter/shCoreRDark.css" rel="stylesheet" type="text/css" />
+<!--link href="<?=WEB_ROOT;?>syntaxHighlighter/shCoreEclipse.css" rel="stylesheet" type="text/css" /-->
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+<!--link type="text/css" rel="Stylesheet" href="<?=WEB_ROOT;?>syntaxHighlighter/shBrushPhp.css"/-->
+<p>Es requerida la instalaciòn previa de PHING, descargar Phing (versión 2.4.0) <a href="http://www.phing.info/trac/wiki/Users/News/Phing%202.4.0%20released" target="_blank">aquí</a></p>
+<p>Para instalar Phing en modo desatendido debe:
+
+
+If you are not using the PEAR installer, you will need to setup your environment in order to run Phing. The distribution of Phing consists of three directories: bin , docs and classes. Only the bin, classes and etc directories are required to run Phing. To install Phing, choose a directory and uncompress the distribution file in that directory (you may already have done this in a prior step). This directory will be known as PHING_HOME .
+Warning
+
+On earlier Windows installations, the script used to launch Phing will have problems if PHING_HOME is a long filepath. This is due to limitations in the OS's handling of the "for" batch-file statement. It is recommended, therefore, that Phing be installed in a short path, such as C:\opt\phing.
+
+Before you can run Phing there is some additional set up you will need to do perform:
+
+<ul>
+    <li>Add the full path to the bin/ directory to your path.</li>
+    <li>Set the PHING_HOME environment variable to the directory where you installed Phing. On some operating systems the Phing wrapper scripts can guess PHING_HOME (Unix dialects and Windows). However, it is better to not rely on this behavior.</li>
+    <li>Set the PHP_COMMAND environment variable to where your Php binary is located (including the binary i.e. PHP_COMMAND=/usr/bin/php).</li>
+    <li>Set the PHP_CLASSPATH environment variable (see the section below). This should be set at least point to PHING_HOME/classes. Alternatively, you can also just add the phing/classes directory to your PHP include_path ini setting.</li>
+    <li>Check your php.ini file to make sure that you have the following settings:
+        <br />- max_execution_time = 0 // unlimited execution time
+        <br />- memory_limit = 32M // you may need more memory depending on size of your build files
     </li>
 </ul>
-<br />
-<div class="indent">
-    <div class="col-1">
-        <h2><span class="softBlue">Speedly and Lightweight</span> Framework</h2>
-        <p class="p0">
-            Chocala is a PHP framework that help you develop complex Rich Internet Applications 
-            quickly, with a best practices oriented approach, and saving a lot of time reusing code snippets. 
-        </p>
-        <p class="p0">
-            Chocala having a high performance and super lightweight, there by reducing your server’s work.
-            It has no dependencies on PECL extensions or PEAR libraries.
-        </p>
-        <img src="images/source-php.jpg" alt="" />
-        <p>
-            While Chocala is simple and lightweight, is a PHP framework for robust applications 
-            giving developers the ability to create business applications with minimal effort.
-        </p>
-        <p class="p0">
-            It is used for fast web programming when PHP 5 is used with a purely object-oriented source, 
-            support for web service. It helps to re-conceptualize components, properties and events rather 
-            than the parameters associated with URLs, procedures and minimizing queries. Some of its main 
-            features are:
-        </p>
-        <ul>
-            <li>
-                Pluggable framework architecture that allows request lifecycles to be customized for each action.
-            </li>
-            <li>
-                Hierarchical approach to internationalization that simplifies localizing applications.
-            </li>
-            <li>
-                Supports automatic generation from data base table to classes, handling it on a model layer.
-            </li>
-            <li>
-                Supports message translation, date and time formatting, number formatting, and interface localization.
-            </li>
-            <li>
-                Input data can be accepted from a number of sources, currently supported are HTTP GET/POST, email, XML-RPC. SOAP support is anticipated in the near future.
-            </li>
-        </ul>
-        <p class="p0">
-            Chocala Framework can be configured, reused or extended easily. An optimal solution for developing 
-            large-scale Web applications that also supports caching, jQuery-based AJAX, authentication and role-based 
-            access control, scaffolding, input validation, widgets and theming.
-        </p>
+        
+<p>
+    If you are using Phing in conjunction with another application, you may need to add additional paths to PHP_CLASSPATH.
+</p>
 
-    </div>
-    <div class="clear"></div>
-</div>
+<pre class="brush: js;">
+function testFunction()
+{
+    return "yecid";
+}
+</pre>
+
+
+<pre class="brush: bash;">
+SET propety abc
+</pre>
+
+<pre class='brush: php'>
+      &lt;?php
+      if (!defined('MEDIAWIKI'))
+      	exit(1);
+      
+      $wgExtensionFunctions[] = "wfSyntaxHighlighterExtension";
+      
+      $wgExtensionCredits['other'][] = array(
+      	'name' => 'SyntaxHighlighter',
+      	'author' => array('Alex Gorbatchev'),
+      	'version' => '1.0',
+      	'url' => 'http://alexgorbatchev.com/projects/syntaxhighlighter',
+      	'description' => 'Provides tight integration with SyntaxHighlighter.'
+      );
+      
+      // Path to the SyntaxHighlighter scripts
+      $wgSyntaxHighlighterScriptPath = "{$wgScriptPath}/extensions/SyntaxHighlighter/scripts";
+      
+      // Path to the SyntaxHighlighter styles
+      $wgSyntaxHighlighterStylesPath = "{$wgScriptPath}/extensions/SyntaxHighlighter/styles";
+      
+      // Theme CSS file
+      $wgSyntaxHighlighterTheme = "shThemeDefault.css";
+      
+      // Brushes to include on the page
+      $wgSyntaxHighlighterBrushes = array(
+      	'shBrushBash.js',
+      	'shBrushCpp.js',
+      	'shBrushCSharp.js',
+      	'shBrushCss.js',
+      	'shBrushDelphi.js',
+      	'shBrushDiff.js',
+      	'shBrushGroovy.js',
+      	'shBrushJava.js',
+      	'shBrushJScript.js',
+      	'shBrushPhp.js',
+      	'shBrushPlain.js',
+      	'shBrushPython.js',
+      	'shBrushRuby.js',
+      	'shBrushScala.js',
+      	'shBrushSql.js',
+      	'shBrushVb.js',
+      	'shBrushXml.js'
+      );
+      
+      $dir = dirname(__FILE__) . '/';
+      
+      function wfSyntaxHighlighterExtension()
+      {
+      	global $wgOut, $wgScriptPath, $wgParser, 
+      		$wgSyntaxHighlighterBrushes, $wgSyntaxHighlighterScriptPath, 
+      		$wgSyntaxHighlighterStylesPath, $wgSyntaxHighlighterTheme;
+      	
+      	// Make shCore.js the very first script to be included (before all the brushes)
+      	array_unshift($wgSyntaxHighlighterBrushes, 'shCore.js');
+      	
+      	$home = $wgSyntaxHighlighterScriptPath;
+      	
+      	// Add all scripts to the header
+      	foreach ($wgSyntaxHighlighterBrushes as $script)
+      		$wgOut->addScript("&lt;script type=\"text/javascript\" src=\"{$wgSyntaxHighlighterScriptPath}/$script\">&lt;/script>\n");
+      
+      	// Add CSS links
+      	foreach (array('shCore.css', $wgSyntaxHighlighterTheme) as $css)
+      		$wgOut->addHeadItem($css, "&lt;link type=\"text/css\" rel=\"stylesheet\" href=\"{$wgSyntaxHighlighterStylesPath}/$css\"/>\n");
+      
+      	// Add initialization code
+      	$wgOut->addScript(
+      		"&lt;script type=\"text/javascript\">".
+      			"var syntaxHighlighterConfig = { clipboardSwf: '{$wgSyntaxHighlighterScriptPath}/clipboard.swf' };".
+      			"SyntaxHighlighter.highlight();".
+      		"&lt;/script>\n"
+      		);
+      	
+      	// Finally, set up a MediaWiki hook to the &lt;sh /> tag
+      	$wgParser->setHook("sh", "wfSyntaxHighlighterExtensionRender"); 
+      	
+      	return true;
+      }
+      
+      function wfSyntaxHighlighterExtensionRender($input, $argv, $parser)
+      {
+      	$args = "";
+      	
+      	while (list($key, $val) = each($argv))
+      		$args .= "$key: $val;";
+      	
+      	$input = htmlspecialchars($input);
+      	return "&lt;pre class=\"$args\">\n$input\n&lt;/pre>";
+ }
+      </pre>

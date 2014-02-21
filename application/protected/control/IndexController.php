@@ -11,4 +11,8 @@ class IndexController extends WebController
     {
     }
 
+    public function test()
+    {
+    }
+
 }
