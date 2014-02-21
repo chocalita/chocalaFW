@@ -1,0 +1,55 @@
+<html>
+<head>
+
+</head>
+<body>
+    <div class="twoSides">
+        <div class="shortSide">
+            <?//=  BarsHelper::renderBar('menuGen');?>
+        </div>
+        <div class="largeSide">
+            <h1><?=__('Class Mapping');?></h1>
+            <span class="bold">Environment: <span class="underline red"><?=$env;?></span></span>
+            <table class="tList" width="100%">
+                <thead>
+                    <tr>
+                        <th width="35%">Config</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="left bold">Adapter</td>
+                        <td class="left"><?=$conf['adapter'];?></td>
+                    </tr>
+                    <tr>
+                        <td class="left bold">Datasource</td>
+                        <td class="left"><?=$conf['datasource'];?></td>
+                    </tr>
+                    <tr>
+                        <td class="left bold">DSN</td>
+                        <td class="left"><?=$dsn;?></td>
+                    </tr>
+                    <tr>
+                        <td class="left bold">User</td>
+                        <td class="left"><?=$conf['user'];?></td>
+                    </tr>
+                    <tr>
+                        <td class="left bold">Generation</td>
+                        <td class="left">
+                            <form method="POST" action="<?=URI::toPage().'mapping';?>">
+                                <input type="checkbox" id="reverse" name="reverse" value="yes" /> <label for="reverse">Reverse Engeeniering</label>
+                                <br />
+                                <input type="checkbox" id="mapping" name="mapping" value="yes" /> <label for="mapping">Mapping Objects</label>
+                                <br />
+                                <input type="submit" name="generation" value="Proccess Generation" />
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>
