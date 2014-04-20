@@ -59,14 +59,23 @@
                     $relatedClassName = SpecialStrings::camelCase($columnMap->getRelatedTableName());
                     $relatedFieldName = SpecialStrings::camelCase($hashColumn['field']);
                     $nColumns++;
+                    if($className == $relatedClassName):
+                        $relatedClassName = SpecialStrings::camelCase($columnMap->getRelatedTableName());
+                        $columnName = SpecialStrings::camelCase($columnMap->getColumnName());
+                        ?>
+
+            <td><?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_INSTANCE#->get<?= $relatedClassName;?>RelatedBy<?= $columnName;?>()?  #CLASS_INSTANCE#->get<?= $relatedClassName;?>RelatedBy<?= $columnName;?>()->get<?= $relatedFieldName;?>(): '-'; <?=CodeGenerator::TAG_CLOSE;?></td>
+            <?php
+                    else:
             ?>
 
             <td><?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_INSTANCE#->get<?= $relatedClassName;?>()->get<?= $relatedFieldName;?>(); <?=CodeGenerator::TAG_CLOSE;?></td>
             <?php
+                    endif;
                 elseif(!$columnMap->isPrimaryKey()):
                     $nColumns++;
             ?>
-            
+
             <td><?=CodeGenerator::TAG_OPEN_SHORT;?> #CLASS_INSTANCE#->get<?= $camelName;?>(); <?=CodeGenerator::TAG_CLOSE;?></td>
             <?php
                 endif;

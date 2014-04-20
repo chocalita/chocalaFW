@@ -260,7 +260,7 @@ class CodeGenerator
         $content = str_replace('#PASSWORD#', $conf['password'], $content);
         $runtimeFilePath = self::mappingPath().'build.properties';
         file_put_contents($runtimeFilePath, $content);
-        // creating runtime-con.xml
+        // creating runtime-conf.xml
         $runtimePath = self::templatesPath().'adapters'.DIRECTORY_SEPARATOR.
                 'runtime-conf.xml';
         $content = file_get_contents($runtimePath);
@@ -271,6 +271,117 @@ class CodeGenerator
         $content = str_replace('#PASSWORD#', $conf['password'], $content);
         $runtimeFilePath = self::mappingPath().'runtime-conf.xml';
         file_put_contents($runtimeFilePath, $content);
+    }
+    
+    /**
+     * Includes Phing class and set into path the phing class directory and 
+     * propel lib directory too
+     * @return void
+     */
+    public static function includePhingAndPropel()
+    {
+        set_include_path(realpath(LIB_DIR.'phing/classes').PATH_SEPARATOR.
+                ORM_DIR.'propel/generator/lib/'.PATH_SEPARATOR.
+                get_include_path());
+        require_once('phing/Phing.php');
+    }
+
+    /**
+     * 
+     * @param string $suffix
+     * @param string $args
+     */
+    public static function proccessPropelByPhing($suffix, $arguments=null)
+    {
+        try {
+            /* Setup Phing environment */
+            Phing::startup();
+            // Set phing.home property to the value from environment,
+            // this may be NULL, but that's not a big problem.
+            Phing::setProperty('phing.home', getenv('PHING_HOME'));
+            Phing::setOutputStream(new OutputStream(fopen(MAPPING_DIR.'output'.
+                    DIRECTORY_SEPARATOR.time().'-'.$suffix.'.log', "w")));
+            $buildXmlArray = array('propel', 'generator', 'build.xml');
+            $projectDirArray = array('generator', 'mapping');
+            $args = array('', '-f',
+                ORM_DIR.implode(DIRECTORY_SEPARATOR, $buildXmlArray),
+                '-Dusing.propel-gen=true',
+                '-Dproject.dir='.CHOCALA_DIR.implode(DIRECTORY_SEPARATOR,
+                        $projectDirArray));
+            if($arguments){
+                $args[] = $arguments;
+            }
+            array_shift($args);// 1st arg is script name, so drop it
+            // Invoke the commandline entry point
+            Phing::fire($args);
+            // Invoke any shutdown routines.
+            Phing::shutdown();
+        } catch (ConfigurationException $x) {
+            Phing::printMessage($x);
+            exit(-1);// This was convention previously for configuration errors.
+        } catch (Exception $x) {
+            // Assume the message was already printed as part of the build and
+            // exit with non-0 error code.
+            exit(1);
+        }
+    }
+
+    /**
+     * 
+     * @return void
+     */
+    public static function generateSchema()
+    {
+        self::proccessPropelByPhing('rev', 'reverse');
+    }
+
+    /**
+     * 
+     * @return void
+     */
+    public static function generateMapping()
+    {
+        set_include_path(realpath(ORM_DIR.'propel/generator/lib/').
+                PATH_SEPARATOR.get_include_path());
+        self::proccessPropelByPhing('gen');
+    }
+
+    
+    public static function generateMapping1()
+    {
+        self::includePhingAndPropel();
+        try {
+            /* Setup Phing environment */
+            Phing::startup();
+            echo getenv('PHING_HOME');
+            echo "yecid";
+            // Set phing.home property to the value from environment
+            // (this may be NULL, but that's not a big problem.)
+            Phing::setProperty('phing.home', getenv('PHING_HOME'));
+            Phing::setOutputStream(new OutputStream(fopen("C://wamp/mys.txt", "w")));            
+            Phing::setOutputStream(new OutputStream(fopen(MAPPING_DIR.'output'.DIRECTORY_SEPARATOR.time().'-rev.log', "w")));
+            //self::$out = new OutputStream(fopen("C://wamp/my.txt", "w"));
+
+//            $argv = array("ddd", "-f", ORM_DIR."propel\generator\build.xml", "-Dusing.propel-gen=true", "-Dproject.dir=".CHOCALA_DIR."generator\mapping");
+            $argv = array("ddd", "-f", ORM_DIR."propel\generator\build.xml", "-Dusing.propel-gen=true", "-Dproject.dir=".CHOCALA_DIR."generator\mapping");
+            // Grab and clean up the CLI arguments
+            $args = isset($argv) ? $argv : $_SERVER['argv']; // $_SERVER['argv'] seems to not work (sometimes?) when argv is registered
+            //print_r($argv); exit();
+            array_shift($args); // 1st arg is script name, so drop it
+
+            // Invoke the commandline entry point
+            Phing::fire($args);
+            
+            // Invoke any shutdown routines.
+            Phing::shutdown();
+        } catch (ConfigurationException $x) {
+            Phing::printMessage($x);
+            exit(-1); // This was convention previously for configuration errors.
+        } catch (Exception $x) {
+            // Assume the message was already printed as part of the build and
+            // exit with non-0 error code.
+            exit(1);
+        }
     }
 
 }

@@ -28,7 +28,7 @@ class #CLASS_NAME#Controller extends WebController
 
     public function create()
     {
-    <?php
+<?php
     foreach($mapedColumns as $columnMap){
         $camelName = SpecialStrings::camelCase($columnMap->getColumnName());
         $pascalName = SpecialStrings::pascalCase($columnMap->getColumnName());
@@ -38,13 +38,13 @@ class #CLASS_NAME#Controller extends WebController
             $pascalRelatedClassName = SpecialStrings::pascalCase($relatedClassName);
             $relatedColumnName = SpecialStrings::camelCase($columnMap->getRelatedColumnName());
 ?>
-    $<?= $pascalRelatedClassName;?>List = <?= $relatedClassName;?>Query::create()
+        $<?= $pascalRelatedClassName;?>List = <?= $relatedClassName;?>Query::create()
                 ->orderBy<?= $relatedFieldName;?>()->find();
         $this->setVar('<?= $pascalRelatedClassName;?>List', $<?= $pascalRelatedClassName;?>List);
 <?php
         }
     }
-    ?>
+?>
     }
 
     public function save()
@@ -65,7 +65,7 @@ class #CLASS_NAME#Controller extends WebController
     public function edit()
     {
         #CLASS_INSTANCE# = $this->getObjectIfExist();
-    <?php
+<?php
     foreach($mapedColumns as $columnMap){
         $camelName = SpecialStrings::camelCase($columnMap->getColumnName());
         $pascalName = SpecialStrings::pascalCase($columnMap->getColumnName());
@@ -81,7 +81,7 @@ class #CLASS_NAME#Controller extends WebController
 <?php
         }
     }
-    ?>
+?>
         $this->setVar('#CLASS_INSTANCE_TO_VIEW#', #CLASS_INSTANCE#);
     }
 

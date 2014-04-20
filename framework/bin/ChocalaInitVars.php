@@ -29,6 +29,7 @@ abstract class ChocalaInitVars
         if(!self::$frameworkInitialized){
             define('SYSTEM_DIR', CHOCALA_DIR);
             define('BIN_DIR', CHOCALA_DIR.'bin'.DIRECTORY_SEPARATOR);
+            define('LIB_DIR', CHOCALA_DIR.'lib'.DIRECTORY_SEPARATOR);
             define('ORM_DIR', CHOCALA_DIR.'orm'.DIRECTORY_SEPARATOR);
             define('ALIAS_DIR', CHOCALA_DIR.'alias'.DIRECTORY_SEPARATOR);
             

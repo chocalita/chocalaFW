@@ -31,12 +31,19 @@ class IndexController extends WebAliasController
     public function mapping()
     {   
         $phpinfo = Configs::phpinfo();
-        //print_r($phpinfo['Environment']);
-        //echo $phpinfo['Environment']['PHP_COMMANDS'];
-        $PHP_COMMAND = $phpinfo['Environment']['PHP_COMMANDS'];
-        $dirs = array('generator', 'mapping', 'gen');
         $result = '';
         CodeGenerator::generateGenerationConfigs();
+        CodeGenerator::includePhingAndPropel();
+        if(isset($_POST['reverse'])){
+            CodeGenerator::generateSchema();
+        }
+        if(isset($_POST['mapping'])){
+            CodeGenerator::generateMapping();
+        }
+        /**
+        // Bash generation way
+        $PHP_COMMAND = $phpinfo['Environment']['PHP_COMMANDS'];
+        $dirs = array('generator', 'mapping', 'gen');
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
             if(isset($_POST['reverse'])){
                 $result.= system(CHOCALA_DIR.implode(DIRECTORY_SEPARATOR,$dirs).
@@ -49,10 +56,11 @@ class IndexController extends WebAliasController
                         ' '.$PHP_COMMAND.
                         ' > '.MAPPING_DIR.'output'.DIRECTORY_SEPARATOR.time().
                         '-gen.log');
-            }
+            }        
         } else {
-            echo "Es Linux";
+            echo "Linux Bash";
         }
+        /**/
         $env = Configs::value('app.run.environment');
         $conf = DBConfig::envConfigs($env);
         $this->setVar('env', $env);
@@ -60,7 +68,6 @@ class IndexController extends WebAliasController
         $this->setVar('dsn', DBConfig::dsn($conf));
         $this->setVar('hasReverse', isset($_POST['reverse']));
         $this->setVar('hasMapping', isset($_POST['mapping']));
-        //$this->render($result);
     }
 
     public function domains()
@@ -76,6 +83,9 @@ class IndexController extends WebAliasController
         if(isset($mapedClasses[$this->id])){
             $mapedClass = $this->id;
             $mapedColumns = ClassMapHelper::columnsFrom($mapedClass);
+            foreach ($mapedColumns as $mc){
+                //print_r($mc);
+            }
             $this->setVar('mapedClass', $mapedClass);
             $this->setVar('mapedColumns', $mapedColumns);
         }else{
