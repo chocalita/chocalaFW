@@ -9,12 +9,12 @@ class DataSources {
     static $development = array(
         'adapter'   =>  'mysql',
         'driver'    =>  'mysql',
-        'datasource'=>  'demo',
+        'datasource'=>  'demog',
         'host'      =>  'localhost',
         'port'      =>  '3321',
-        'dbname'    =>  'demo',
-        'user'      =>  'dbuser',
-        'password'  =>  'password'
+        'dbname'    =>  'demog',
+        'user'      =>  'root',
+        'password'  =>  ''
     );
     
     static $test = array(

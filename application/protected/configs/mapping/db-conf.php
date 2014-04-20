@@ -4,17 +4,17 @@
 $conf = array (
   'datasources' => 
   array (
-    'demo' => 
+    'demog' => 
     array (
       'adapter' => 'mysql',
       'connection' => 
       array (
-        'dsn' => 'mysql:host=localhost;dbname=demo;charset=UTF8',
-        'user' => 'dbuser',
-        'password' => 'password',
+        'dsn' => 'mysql:host=localhost;dbname=demog;charset=UTF8',
+        'user' => 'root',
+        'password' => '',
       ),
     ),
-    'default' => 'demo',
+    'default' => 'demog',
   ),
   'generator_version' => '1.6.7',
 );

@@ -34,8 +34,7 @@ if (getenv('PHP_CLASSPATH')) {
         define('PHP_CLASSPATH',  get_include_path());
     }
 }
-
-require_once 'phing/Phing.php';
+require_once LIB_DIR.'phing/classes/phing/Phing.php';
 
 try {
     /* Setup Phing environment */
@@ -44,9 +43,11 @@ try {
     // Set phing.home property to the value from environment
     // (this may be NULL, but that's not a big problem.)
     Phing::setProperty('phing.home', getenv('PHING_HOME'));
-
+    
+    $argv = array("ddd", "-f", ORM_DIR."propel\generator\build.xml", "-Dusing.propel-gen=true", "-Dproject.dir=".CHOCALA_DIR."generator\mapping");
     // Grab and clean up the CLI arguments
     $args = isset($argv) ? $argv : $_SERVER['argv']; // $_SERVER['argv'] seems to not work (sometimes?) when argv is registered
+    //print_r($argv); exit();
     array_shift($args); // 1st arg is script name, so drop it
 
     // Invoke the commandline entry point
