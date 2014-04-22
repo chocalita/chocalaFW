@@ -4,3 +4,5 @@ framework/generator/mapping/runtime-conf.xml
 framework/generator/mapping/schema.xml
 application/protected/configs/mapping/sql/schema.sql
 application/protected/configs/mapping/sql/sqldb.map
+application/protected/configs/mapping/output/1397615252-rev.log
+application/protected/configs/mapping/output/
